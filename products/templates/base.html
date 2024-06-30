@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DigitalWorld - Интернет-магазин ноутбуков</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+  
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="logo-site" href="#">
+    <img src="{% static 'images/log.png' %}" alt="Logo">
+  </a>
+  <a class="navbar-brand" href="#">DigitalWorld</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'information' %}">О нас</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'catalog' %}">Каталог</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'where_to_find_us' %}">Где нас найти?</a>
+      </li>
+    </ul>
+    <div class="ml-auto">
+      {% if user.is_authenticated %}
+        <span class="navbar-text">Привет, {{ user.username }}!</span>
+        <a href="{% url 'logout' %}" class="btn btn-outline-danger ml-2">Выйти</a>
+        <a href="{% url 'cart' %}" class="btn btn-outline-success ml-2">Корзина</a>
+      {% else %}
+        <a href="{% url 'login' %}" class="btn btn-outline-success my-2 my-sm-0">Вход</a>
+        <a href="{% url 'register' %}" class="btn btn-outline-success my-2 my-sm-0 ml-2">Регистрация</a>
+      {% endif %}
+    </div>
+  </div>
+</nav>
+
+{% block content %}
+<!-- Здесь будет заменен контент из дочернего шаблона -->
+{% endblock %}
+
+{% block scripts %}
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+{% endblock %}
+
+</body>
+</html>

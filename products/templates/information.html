@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>О нас</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'infostyle.css' %}">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="logo-site" href="{% url 'home' %}">
+      <img src="{% static 'images/logo.png' %}" alt="Logo">
+    </a>
+    <a class="navbar-brand" href="{% url 'home' %}">DigitalWorld</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'information' %}">О нас</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'catalog' %}">Каталог</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'where_to_find_us' %}">Где нас найти?</a>
+        </li>
+      </ul>
+      <div class="ml-auto">
+        {% if user.is_authenticated %}
+          <span class="navbar-text">Привет, {{ user.username }}!</span>
+          <a href="{% url 'logout' %}" class="btn btn-outline-danger ml-2">Выйти</a>
+          <a href="{% url 'cart' %}" class="btn btn-outline-success ml-2">Корзина</a>
+        {% else %}
+          <a href="{% url 'login' %}" class="btn btn-outline-success my-2 my-sm-0">Вход</a>
+          <a href="{% url 'register' %}" class="btn btn-outline-success my-2 my-sm-0 ml-2">Регистрация</a>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+    
+    <header class="header-title text-center">
+        Digital World: Надежность, которую вы заслуживаете
+    </header>
+    
+    <div class="container">
+        <h2 class="text-center mt-4 styled-header">Новинки компании</h2>
+        <div class="row">
+            {% for product in latest_products %}
+            <div class="col-md-4 mb-3">
+                <div class="card h-100">
+                    <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text"><strong>{{ product.price }} руб.</strong></p>
+                        <a href="{% url 'product_detail' product.id %}" class="btn btn-primary">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

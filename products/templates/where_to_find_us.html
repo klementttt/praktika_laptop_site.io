@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Где нас найти?</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="logo-site" href="{% url 'home' %}">
+      <img src="{% static 'images/logo.png' %}" alt="Logo">
+    </a>
+    <a class="navbar-brand" href="{% url 'home' %}">DigitalWorld</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'information' %}">О нас</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'catalog' %}">Каталог</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'where_to_find_us' %}">Где нас найти?</a>
+        </li>
+      </ul>
+      <div class="ml-auto">
+        {% if user.is_authenticated %}
+          <span class="navbar-text">Привет, {{ user.username }}!</span>
+          <a href="{% url 'logout' %}" class="btn btn-outline-danger ml-2">Выйти</a>
+          <a href="{% url 'cart' %}" class="btn btn-outline-success ml-2">Корзина</a>
+        {% else %}
+          <a href="{% url 'login' %}" class="btn btn-outline-success my-2 my-sm-0">Вход</a>
+          <a href="{% url 'register' %}" class="btn btn-outline-success my-2 my-sm-0 ml-2">Регистрация</a>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+
+  <div class="container mt-4">
+    <h1>Где нас найти?</h1>
+    <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Aed98dd0c4e12a65000a716b287b8b37b12ea7e47e1a90ec1d7c17b2d8df3c030&amp;source=constructor" width="100%" height="400" frameborder="0"></iframe>
+    
+    <h3>Контактная информация</h3>
+    <p><strong>Адрес:</strong> Ижевск, Россия</p>
+    <p><strong>Телефон:</strong> +7 (123) 456-7890</p>
+    <p><strong>Email:</strong> info@digitalworld.com</p>
+  </div>
+
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</body>
+</html>

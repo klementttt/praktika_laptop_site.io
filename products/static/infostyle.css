@@ -1,0 +1,29 @@
+.navbar {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #ddd;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo-site img {
+  width: 8rem; /* Установите желаемый размер логотипа */
+  height: auto; /* Сохранение пропорций */
+}
+
+.categories-products {
+margin-top: 50px;
+}
+
+/* information_style.css */
+
+.header-title {
+  background-color: #007bff; /* Цвет фона */
+  color: #fff; /* Цвет текста */
+  padding: 20px 0; /* Отступы внутри блока */
+  font-size: 2.5rem; /* Размер шрифта */
+  font-weight: bold; /* Жирный текст */
+  text-transform: uppercase; /* Прописные буквы */
+  margin-top: 30px; /* Отступ сверху */
+}
